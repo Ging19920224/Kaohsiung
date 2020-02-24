@@ -226,18 +226,15 @@ function scroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function pageBtnActive(e) {
-  if (index == 1 && index == pageTotal) {
-    btnColorChange();
-    if (e.target.id == 'next' || e.target.id == 'prev')  return;
-  } else if (index == 1 && index != pageTotal) {
-    btnColorChange();
-    if (e.target.id == 'next') {
-      nextPage();
-    } else if (e.target.id == 'prev')  return;
-  } else if (index != 1 && index == pageTotal) {
-    btnColorChange();
-    if (e.target.id == 'prev') {
-      prevPage();
-    } else if (e.target.id == 'next') return;
+  switch (true) {
+    case index == 1 && index == pageTotal :
+      btnColorChange();
+      if (e.target.id == 'next' || e.target.id == 'prev')  return;
+    case index == 1 && index != pageTotal :
+      btnColorChange();
+      if (e.target.id == 'next') { nextPage(); } else if (e.target.id == 'prev')  return;
+    case index != 1 && index == pageTotal :
+      btnColorChange();
+      if (e.target.id == 'prev') { prevPage(); } else if (e.target.id == 'next') return;
   }
 }
