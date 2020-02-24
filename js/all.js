@@ -201,15 +201,19 @@ function pageChange(index) {
   loadData(area);
 }
 function btnColorChange() {
-  if(index == 1 && index == pageTotal){
-    prevBtn.classList.add('btn-disabled');
-    nextBtn.classList.add('btn-disabled');
-  }else if(index == 1 && index != pageTotal){
-    prevBtn.classList.add('btn-disabled');
-    nextBtn.classList.remove('btn-disabled');
-  }else if(index != 1 && index == pageTotal){
-    nextBtn.classList.add('btn-disabled');
-    prevBtn.classList.remove('btn-disabled');
+  switch (true) {
+    case index == 1 && index == pageTotal :
+      prevBtn.classList.add('btn-disabled');
+      nextBtn.classList.add('btn-disabled');
+      break
+    case index == 1 && index != pageTotal :
+      prevBtn.classList.add('btn-disabled');
+      nextBtn.classList.remove('btn-disabled');
+      break
+    case index != 1 && index == pageTotal :
+      nextBtn.classList.add('btn-disabled');
+      prevBtn.classList.remove('btn-disabled');
+      break
   }
 }
 function areaChange() {
@@ -230,11 +234,14 @@ function pageBtnActive(e) {
     case index == 1 && index == pageTotal :
       btnColorChange();
       if (e.target.id == 'next' || e.target.id == 'prev')  return;
+      break
     case index == 1 && index != pageTotal :
       btnColorChange();
       if (e.target.id == 'next') { nextPage(); } else if (e.target.id == 'prev')  return;
+      break
     case index != 1 && index == pageTotal :
       btnColorChange();
       if (e.target.id == 'prev') { prevPage(); } else if (e.target.id == 'next') return;
+      break
   }
 }
